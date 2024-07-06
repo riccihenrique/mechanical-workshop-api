@@ -1,6 +1,7 @@
 import errToJSON from "error-to-json";
 import express, { NextFunction, Request, Response } from "express";
 import { Router } from "./routes";
+import { databaseSingleton } from "./database";
 
 class ExpressApp {
   app = express();
@@ -8,6 +9,8 @@ class ExpressApp {
     this.initExpressConfigs();
     this.initRoutes();
     this.initErrorMiddleware();
+
+    this.initDatabase();
   }
 
   initRoutes() {
@@ -36,6 +39,10 @@ class ExpressApp {
     }
 
     this.app.use(errorMiddleware);
+  }
+
+  initDatabase() {
+    databaseSingleton.init();
   }
 }
 
