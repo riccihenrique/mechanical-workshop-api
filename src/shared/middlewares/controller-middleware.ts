@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { IBaseController } from "../interfaces/ControllerBase";
+import { IBaseController } from "../interfaces/controller-base";
 
 export const ControllerMiddleware = (controller: IBaseController) => {
   return async (req: Request, res: Response, next: NextFunction) => {

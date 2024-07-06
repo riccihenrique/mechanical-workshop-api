@@ -1,4 +1,4 @@
-import { IBaseController } from "../../../../shared/interfaces/ControllerBase";
+import { IBaseController } from "../../../../shared/interfaces/controller-base";
 
 type UpdateMechanicalWorkshopControllerBody = {
   name: string;
