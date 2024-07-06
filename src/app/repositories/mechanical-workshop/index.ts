@@ -16,21 +16,71 @@ export class MechanicalWorkshopRepository implements IMechanicalWorkshopReposito
 
     const mechanicalWorkshop = await MechanicalWorkshopModel.create({
       name: data.name,
-      addressId: address.id
+      addressId: address.id,
     });
+
+    mechanicalWorkshop.address = address;
 
     return MechanicalWorkshopModel.formatToEntity(mechanicalWorkshop);
   }
-  update(id: string, data: { name: string; street: string; city: string; state: string; zip: string; }): Promise<MechanicalWorkshop> {
-    throw new Error("Method not implemented.");
+
+  async update(idMechanical: string, idAddress: string, data: { name: string; street: string; city: string; state: string; zip: string; }): Promise<void> {
+    await AddressModel.update({
+      street: data.street,
+      city: data.city,
+      state: data.state,
+      zip: data.zip,
+    }, {
+      where: {
+        id: idAddress,
+      },
+    });
+
+    await MechanicalWorkshopModel.update({
+      name: data.name,
+    }, {
+      where: {
+        id: idMechanical,
+      },
+    });
   }
-  deleteById(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async deleteById(id: string): Promise<void> {
+    await MechanicalWorkshopModel.destroy({
+      where: {
+        id,
+      },
+    });
   }
-  findById(id: string): Promise<MechanicalWorkshop | null> {
-    throw new Error("Method not implemented.");
+
+  async findById(id: string): Promise<MechanicalWorkshop | null> {
+    const mechanicalWorkshop = await MechanicalWorkshopModel.findByPk(id,
+      {
+        include: [
+          {
+            model: AddressModel,
+            as: "address",
+          },
+        ],
+      });
+
+    if (!mechanicalWorkshop) {
+      return null;
+    }
+
+    return MechanicalWorkshopModel.formatToEntity(mechanicalWorkshop);
   }
-  list(): Promise<MechanicalWorkshop[]> {
-    throw new Error("Method not implemented.");
+
+  async list(): Promise<MechanicalWorkshop[]> {
+    const data = await  MechanicalWorkshopModel.findAll({
+      include: [
+        {
+          model: AddressModel,
+          as: "address",
+        },
+      ],
+    });
+
+    return data.map((mechanicalWorkshop) => MechanicalWorkshopModel.formatToEntity(mechanicalWorkshop));
   }
 }
