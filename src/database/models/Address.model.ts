@@ -19,7 +19,8 @@ InferCreationAttributes<AddressModel>
   static initInstance(sequelize: Sequelize) {
     super.init({
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -40,11 +41,11 @@ InferCreationAttributes<AddressModel>
         allowNull: false,
       },
       latitude: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 8),
         allowNull: true,
       },
       longitude: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 8),
         allowNull: true,
       },
       deletedAt: {

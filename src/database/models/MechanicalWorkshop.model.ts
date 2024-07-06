@@ -18,7 +18,8 @@ InferCreationAttributes<MechanicalWorkshopModel>
   public static initInstance(sequelize: Sequelize) {
     super.init({
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -57,8 +58,8 @@ InferCreationAttributes<MechanicalWorkshopModel>
   };
 
   static associate() {
-    MechanicalWorkshopModel.belongsTo(AddressModel, {
-      foreignKey: 'addressId',
+    this.hasOne(AddressModel, {
+      foreignKey: 'id',
       as: 'address'
     });
   }
