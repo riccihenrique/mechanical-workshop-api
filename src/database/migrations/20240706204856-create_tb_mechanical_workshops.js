@@ -14,6 +14,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      addressId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'tb_addresses',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

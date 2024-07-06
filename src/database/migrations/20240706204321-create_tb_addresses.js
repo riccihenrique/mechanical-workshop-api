@@ -26,16 +26,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
        },
-       mechanicalWorkshopId: {
-        type: Sequelize.UUID,
+      latitude: {
+        type: Sequelize.DECIMAL,
         allowNull: false,
-        references: {
-          model: 'tb_mechanical_workshops',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-       },
+      },
+      longitude: {
+        type: Sequelize.DECIMAL,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
