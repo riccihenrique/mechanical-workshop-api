@@ -1,7 +1,7 @@
 import { Address } from "./Address";
 
 export type MechanicalWorkshop = {
-  id: number;
+  id: string;
   name: string;
   address: Address;
   createdAt: Date;

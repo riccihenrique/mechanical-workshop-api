@@ -17,8 +17,17 @@ export class UpdateMechanicalWorkshopController implements IUpdateMechanicalWork
       longitude: body.longitude
     });
 
+    if (result instanceof Error) {
+      return {
+        statusCode: 404,
+        data: {
+          message: result.message,
+        },
+      }
+    }
+
     return {
-      statusCode: 200,
+      statusCode: 204,
       data: result,
     }
   }

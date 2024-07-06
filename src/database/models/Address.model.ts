@@ -5,7 +5,7 @@ export class AddressModel extends Model<
 InferAttributes<AddressModel>,
 InferCreationAttributes<AddressModel>
 > {
-  public id!: CreationOptional<number>;
+  public id!: CreationOptional<string>;
   public street!: string;
   public city!: string;
   public state!: string;

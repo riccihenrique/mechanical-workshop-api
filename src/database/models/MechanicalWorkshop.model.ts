@@ -6,9 +6,9 @@ export class MechanicalWorkshopModel extends Model<
 InferAttributes<MechanicalWorkshopModel>,
 InferCreationAttributes<MechanicalWorkshopModel>
 > {
-  public id!: CreationOptional<number>;
+  public id!: CreationOptional<string>;
   public name!: string;
-  public addressId!: number;
+  public addressId!: string;
   public createdAt!: CreationOptional<Date>;
   public updatedAt!: CreationOptional<Date>;;
   public deletedAt!: CreationOptional<Date>;;
@@ -58,8 +58,8 @@ InferCreationAttributes<MechanicalWorkshopModel>
   };
 
   static associate() {
-    this.hasOne(AddressModel, {
-      foreignKey: 'id',
+    this.belongsTo(AddressModel, {
+      foreignKey: 'addressId',
       as: 'address'
     });
   }

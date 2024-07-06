@@ -12,7 +12,7 @@ type MechanicalWorkshopDataDTO = {
 
 export interface IMechanicalWorkshopService {
   create(data: MechanicalWorkshopDataDTO): Promise<MechanicalWorkshop>;
-  update(id: string, data: MechanicalWorkshopDataDTO): Promise<MechanicalWorkshop>;
+  update(id: string, data: MechanicalWorkshopDataDTO): Promise<Error | void>;
   deleteById(id: string): Promise<void>;
   list(): Promise<MechanicalWorkshop[]>;
   findById(id: string): Promise<MechanicalWorkshop>;
