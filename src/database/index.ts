@@ -16,7 +16,7 @@ export class SequelizeDatabase implements IDatabaseAdapter<Sequelize> {
 
     async init(): Promise<void> {
       sequelizeModels.forEach((model) => {
-        model.init(this.databaseInstance);
+        model.initInstance(this.databaseInstance);
       });
     }
 }

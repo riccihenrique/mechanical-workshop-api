@@ -1,7 +1,7 @@
-import { Address } from "./Address";
-import { MechanicalWorkshop } from "./MechanicalWorkshop";
+import { AddressModel } from "./Address.model";
+import { MechanicalWorkshopModel } from "./MechanicalWorkshop.model";
 
 export const sequelizeModels = [
-  Address,
-  MechanicalWorkshop,
+  AddressModel,
+  MechanicalWorkshopModel,
 ];
