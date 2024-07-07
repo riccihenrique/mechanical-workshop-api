@@ -63,15 +63,4 @@ InferCreationAttributes<MechanicalWorkshopModel>
       as: 'address'
     });
   }
-
-  public static formatToEntity(mechanicalWorkshop: MechanicalWorkshopModel): MechanicalWorkshop {
-    return {
-      id: mechanicalWorkshop.id,
-      name: mechanicalWorkshop.name,
-      address: AddressModel.formatToEntity(mechanicalWorkshop.address),
-      createdAt: mechanicalWorkshop.createdAt,
-      updatedAt: mechanicalWorkshop.updatedAt,
-      deletedAt: mechanicalWorkshop.deletedAt
-    }
-  }
 }

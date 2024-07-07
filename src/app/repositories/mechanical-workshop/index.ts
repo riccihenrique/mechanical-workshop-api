@@ -2,8 +2,9 @@ import { MechanicalWorkshop } from "../../entities/MechanicalWorkshop";
 import { IMechanicalWorkshopRepository } from "../../interfaces/repositories/mechanical-workshop";
 import { MechanicalWorkshopModel } from "../../../database/models/MechanicalWorkshop.model";
 import { AddressModel } from "../../../database/models/Address.model";
+import { MechanicalWorkshopBaseRepository } from "./mechanical-workshop-base-repository";
 
-export class MechanicalWorkshopRepository implements IMechanicalWorkshopRepository {
+export class MechanicalWorkshopRepository extends MechanicalWorkshopBaseRepository implements IMechanicalWorkshopRepository {
   async create(data: { name: string; street: string; city: string; state: string; zip: string; latitude: number; longitude: number }): Promise<MechanicalWorkshop> {
     const address = await AddressModel.create({
       street: data.street,
@@ -21,7 +22,7 @@ export class MechanicalWorkshopRepository implements IMechanicalWorkshopReposito
 
     mechanicalWorkshop.address = address;
 
-    return MechanicalWorkshopModel.formatToEntity(mechanicalWorkshop);
+    return this.formatToEntity(mechanicalWorkshop);
   }
 
   async update(idMechanical: string, idAddress: string, data: { name: string; street: string; city: string; state: string; zip: string; }): Promise<void> {
@@ -69,7 +70,7 @@ export class MechanicalWorkshopRepository implements IMechanicalWorkshopReposito
       return null;
     }
 
-    return MechanicalWorkshopModel.formatToEntity(mechanicalWorkshop);
+    return this.formatToEntity(mechanicalWorkshop);
   }
 
   async list(): Promise<MechanicalWorkshop[]> {
@@ -83,6 +84,6 @@ export class MechanicalWorkshopRepository implements IMechanicalWorkshopReposito
       ],
     });
 
-    return data.map((mechanicalWorkshop) => MechanicalWorkshopModel.formatToEntity(mechanicalWorkshop));
+    return data.map((mechanicalWorkshop) => this.formatToEntity(mechanicalWorkshop));
   }
 }
