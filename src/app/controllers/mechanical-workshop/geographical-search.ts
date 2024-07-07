@@ -5,10 +5,10 @@ import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical
 export class GeographicalSearchMechanicalWorkshopController implements IGeographicalSearchMechanicalWorkshopController {
   constructor(private mechanicalWorkshopService: IMechanicalWorkshopService) {}
   
-  async execute(params: { body: { lat: number; long: number; distance: number; }; query: {}; params: {}; headers: {}; }): Promise<{ data: any; statusCode: number; }> {
+  async execute(params: { body: { latitude: number; longitude: number; distance: number; }; query: {}; params: {}; headers: {}; }): Promise<{ data: any; statusCode: number; }> {
     const { body } = params;
 
-    const result = await this.mechanicalWorkshopService.geographicSearch(body.lat, body.long, body.distance);
+    const result = await this.mechanicalWorkshopService.geographicSearch(body.latitude, body.longitude, body.distance);
 
     return {
       statusCode: 200,

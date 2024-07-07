@@ -78,6 +78,7 @@ export class MechanicalWorkshopRepository implements IMechanicalWorkshopReposito
         {
           model: AddressModel,
           as: "address",
+          required: true,
         },
       ],
     });

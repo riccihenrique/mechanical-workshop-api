@@ -1,8 +1,8 @@
 import { IBaseController } from "../../../../shared/interfaces/controller-base";
 
 type GeographicalSearchMechanicalWorkshopControllerBody = {
-  lat: number;
-  long: number;
+  latitude: number;
+  longitude: number;
   distance: number;
 };
 type GeographicalSearchMechanicalWorkshopControllerParams = {};
