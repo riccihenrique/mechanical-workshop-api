@@ -36,20 +36,31 @@ export class MechanicalWorkshopService implements IMechanicalWorkshopService {
     });
   }
 
-  deleteById(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  async deleteById(id: string): Promise<Error | void> {
+    const mechanicalExists = await this.mechanicalWorkshopRepository.findById(id);
+
+    if (!mechanicalExists) {
+      return new Error('Mechanical Workshop not found');
+    }
+
+    await this.mechanicalWorkshopRepository.deleteById(id);
   }
 
   list(): Promise<MechanicalWorkshop[]> {
-    throw new Error("Method not implemented.");
+    return this.mechanicalWorkshopRepository.list();
   }
 
-  findById(id: string): Promise<MechanicalWorkshop> {
-    throw new Error("Method not implemented.");
+  async findById(id: string): Promise<MechanicalWorkshop | Error> {
+    const result = await this.mechanicalWorkshopRepository.findById(id);
+
+    if (result === null) {
+      return new Error('Mechanical Workshop not found');
+    }
+
+    return result;
   }
 
   geographicSearch(lat: number, long: number, distance: number): Promise<MechanicalWorkshop[]> {
     throw new Error("Method not implemented.");
   }
-
 }

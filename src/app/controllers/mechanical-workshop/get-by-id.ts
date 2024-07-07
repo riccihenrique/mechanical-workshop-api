@@ -1,12 +1,12 @@
-import {IDeleteMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
+import {IGetByIdMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
 import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
 
-export class DeleteMechanicalWorkshopController implements IDeleteMechanicalWorkshopController {
+export class GetByIdMechanicalWorkshopController implements IGetByIdMechanicalWorkshopController {
   constructor(private mechanicalWorkshopService: IMechanicalWorkshopService) {}
   async execute(params: { body: {}; query: {}; params: { id: string; }; headers: {}; }): Promise<{ data: any; statusCode: number; }> {
     const { id } = params.params;
 
-    const result = await this.mechanicalWorkshopService.deleteById(id);
+    const result = await this.mechanicalWorkshopService.findById(id);
 
     if (result instanceof Error) {
       return {
@@ -18,7 +18,7 @@ export class DeleteMechanicalWorkshopController implements IDeleteMechanicalWork
     }
 
     return {
-      statusCode: 204,
+      statusCode: 200,
       data: result,
     }
   }
