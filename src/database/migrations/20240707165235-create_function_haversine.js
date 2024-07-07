@@ -14,9 +14,9 @@ module.exports = {
                     COS(RADIANS(lat2)) *
                     COS(RADIANS(lon2) - RADIANS(lon1)) +
                     SIN(RADIANS(lat1)) * SIN(RADIANS(lat2))
-                  )) * 111.045;
+                  )) * 111.045; // 111.045 km = Earth's radius
       END
-    `);
+    `); // Adaptado de https://www.plumislandmedia.net/mysql/stored-function-haversine-distance-computation/
   },
 
   async down (queryInterface, Sequelize) {
