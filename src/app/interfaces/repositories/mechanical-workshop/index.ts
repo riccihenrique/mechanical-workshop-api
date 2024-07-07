@@ -17,4 +17,5 @@ export interface IMechanicalWorkshopRepository {
   deleteById(id: string): Promise<void>;
   findById(id: string): Promise<MechanicalWorkshop | null>;
   list(): Promise<MechanicalWorkshop[]>;
+  findByLocation(lat: number, long: number, distance: number): Promise<MechanicalWorkshop[]>;
 }

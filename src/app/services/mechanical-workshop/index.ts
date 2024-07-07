@@ -65,21 +65,8 @@ export class MechanicalWorkshopService implements IMechanicalWorkshopService {
   }
 
   async geographicSearch(lat: number, long: number, distance: number): Promise<MechanicalWorkshop[]> {
-    const result = await this.mechanicalWorkshopRepository.list();
+    const result = await this.mechanicalWorkshopRepository.findByLocation(lat, long, distance);
 
-    const mechanicalWorkshopsInDistance = result.filter(workshop => {
-      const distanceInMeters = this.geolocationAdapter.getDistanceBetweenTwoPoints(
-        lat,
-        long,
-        workshop.address.latitude,
-        workshop.address.longitude
-      );
-
-      const distanceInKm = distanceInMeters / 1000;
-
-      return distanceInKm <= distance;
-    });
-
-    return mechanicalWorkshopsInDistance;
+    return result;
   }
 }
