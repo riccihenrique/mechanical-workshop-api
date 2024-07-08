@@ -20,7 +20,7 @@ export class UpdateMechanicalWorkshopController implements IUpdateMechanicalWork
 
     if (result instanceof CustomError) {
       return {
-        statusCode: 404,
+        statusCode: result.statusCode,
         data: {
           message: result.message,
         },

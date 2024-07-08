@@ -11,7 +11,7 @@ export class DeleteMechanicalWorkshopController implements IDeleteMechanicalWork
 
     if (result instanceof CustomError) {
       return {
-        statusCode: 404,
+        statusCode: result.statusCode,
         data: {
           message: result.message,
         },
