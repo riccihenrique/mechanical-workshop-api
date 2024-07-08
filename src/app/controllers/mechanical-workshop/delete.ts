@@ -1,3 +1,4 @@
+import { CustomError } from "../../../shared/custom-errors/custom-error";
 import {IDeleteMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
 import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
 
@@ -8,7 +9,7 @@ export class DeleteMechanicalWorkshopController implements IDeleteMechanicalWork
 
     const result = await this.mechanicalWorkshopService.deleteById(id);
 
-    if (result instanceof Error) {
+    if (result instanceof CustomError) {
       return {
         statusCode: 404,
         data: {

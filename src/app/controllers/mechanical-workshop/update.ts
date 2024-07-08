@@ -1,3 +1,4 @@
+import { CustomError } from "../../../shared/custom-errors/custom-error";
 import { IUpdateMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
 import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
 
@@ -17,7 +18,7 @@ export class UpdateMechanicalWorkshopController implements IUpdateMechanicalWork
       longitude: body.longitude
     });
 
-    if (result instanceof Error) {
+    if (result instanceof CustomError) {
       return {
         statusCode: 404,
         data: {

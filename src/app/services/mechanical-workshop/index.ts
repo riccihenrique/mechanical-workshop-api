@@ -1,3 +1,5 @@
+import { CustomError } from "../../../shared/custom-errors/custom-error";
+import { NotFoundError } from "../../../shared/custom-errors/not-found";
 import { MechanicalWorkshop } from "../../entities/MechanicalWorkshop";
 import { IGeolocationAdapter } from "../../interfaces/adapters/geolocation-adapter";
 import { IMechanicalWorkshopRepository } from "../../interfaces/repositories/mechanical-workshop";
@@ -22,11 +24,11 @@ export class MechanicalWorkshopService implements IMechanicalWorkshopService {
     return result;
   }
 
-  async update(id: string, data: { name: string; street: string; city: string; state: string; zip: string; latitude: number; longitude: number; }): Promise<Error | void> {
+  async update(id: string, data: { name: string; street: string; city: string; state: string; zip: string; latitude: number; longitude: number; }): Promise<CustomError | void> {
     const mechanicalExists = await this.mechanicalWorkshopRepository.findById(id);
 
     if (!mechanicalExists) {
-      return new Error('Mechanical Workshop not found');
+      return new NotFoundError('Mechanical Workshop not found');
     }
 
     await this.mechanicalWorkshopRepository.update(id, mechanicalExists.address.id, {
@@ -40,11 +42,11 @@ export class MechanicalWorkshopService implements IMechanicalWorkshopService {
     });
   }
 
-  async deleteById(id: string): Promise<Error | void> {
+  async deleteById(id: string): Promise<CustomError | void> {
     const mechanicalExists = await this.mechanicalWorkshopRepository.findById(id);
 
     if (!mechanicalExists) {
-      return new Error('Mechanical Workshop not found');
+      return new NotFoundError('Mechanical Workshop not found');
     }
 
     await this.mechanicalWorkshopRepository.deleteById(id);
@@ -54,11 +56,11 @@ export class MechanicalWorkshopService implements IMechanicalWorkshopService {
     return this.mechanicalWorkshopRepository.list();
   }
 
-  async findById(id: string): Promise<MechanicalWorkshop | Error> {
+  async findById(id: string): Promise<MechanicalWorkshop | CustomError> {
     const result = await this.mechanicalWorkshopRepository.findById(id);
 
     if (result === null) {
-      return new Error('Mechanical Workshop not found');
+      return new NotFoundError('Mechanical Workshop not found');
     }
 
     return result;
