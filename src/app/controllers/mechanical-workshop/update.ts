@@ -1,9 +1,9 @@
 import { CustomError } from "../../../shared/custom-errors/custom-error";
 import { IUpdateMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
-import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
+import { IUpdateMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
 
 export class UpdateMechanicalWorkshopController implements IUpdateMechanicalWorkshopController {
-  constructor(private mechanicalWorkshopService: IMechanicalWorkshopService) {}
+  constructor(private mechanicalWorkshopService: IUpdateMechanicalWorkshopService) {}
   async execute(params: { body: { name: string; street: string; city: string; state: string; zip: string; latitude: number; longitude: number }; query: {}; params: { id: string; }; headers: {}; }): Promise<{ data: any; statusCode: number; }> {
     const { id } = params.params;
     const { body } = params;

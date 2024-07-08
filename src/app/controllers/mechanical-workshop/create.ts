@@ -1,8 +1,8 @@
 import { ICreateMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
-import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
+import { ICreateMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
 
 export class CreateMechanicalWorkshopController implements ICreateMechanicalWorkshopController {
-  constructor(private mechanicalWorkshopService: IMechanicalWorkshopService) {}
+  constructor(private mechanicalWorkshopService: ICreateMechanicalWorkshopService) {}
   
   async execute(params: { body: { name: string; street: string; city: string; state: string; zip: string; latitude: number; longitude: number }; query: {}; params: {}; headers: {}; }): Promise<{ data: any; statusCode: number; }> {
     const { body } = params;

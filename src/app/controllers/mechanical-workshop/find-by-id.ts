@@ -1,9 +1,9 @@
 import { CustomError } from "../../../shared/custom-errors/custom-error";
-import {IGetByIdMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
-import { IMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
+import {IFindByIdMechanicalWorkshopController } from "../../interfaces/controllers/mechanical-workshop";
+import { IFindByIdMechanicalWorkshopService } from "../../interfaces/services/mechanical-workshop";
 
-export class GetByIdMechanicalWorkshopController implements IGetByIdMechanicalWorkshopController {
-  constructor(private mechanicalWorkshopService: IMechanicalWorkshopService) {}
+export class FindByIdMechanicalWorkshopController implements IFindByIdMechanicalWorkshopController {
+  constructor(private mechanicalWorkshopService: IFindByIdMechanicalWorkshopService) {}
   async execute(params: { body: {}; query: {}; params: { id: string; }; headers: {}; }): Promise<{ data: any; statusCode: number; }> {
     const { id } = params.params;
 
