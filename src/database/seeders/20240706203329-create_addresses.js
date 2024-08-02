@@ -6,19 +6,21 @@ module.exports = {
       await queryInterface.bulkInsert('tb_addresses', [
         {
           id: 'f3e6a3b4-9b5f-4e0d-8a0f-3c4b5d4f0f9e',
-          mechanicalWorkshopId: '76dd272a-2bc0-4a0a-8584-cec84f2e5e3e',
           street: 'Rua Exemplo 1',
           city: 'São Paulo',
           state: 'SP',
           zip: '01000-000',
+          latitude: -23.422813354634926,
+          longitude: -51.9235877758095
         },
         {
           id: 'f3e6a3b4-9b5f-4e0d-8a0f-3c4b5d4f0f9f',
-          mechanicalWorkshopId: '0de7a26c-f18c-4a7e-884a-1280471426b3',
           street: 'Rua Exemplo 2',
           city: 'São Paulo',
           state: 'SP',
           zip: '04100-000',
+          latitude: -23.38595046735244,
+          longitude: -51.943294893114675
         }
     ], {});
   },
