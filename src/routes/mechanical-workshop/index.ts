@@ -2,8 +2,7 @@ import express from 'express';
 import { ControllerMiddleware } from '../../shared/middlewares/controller-middleware';
 import { makeCreateMechanicalWorkshopController, makeDeleteMechanicalWorkshopController, makeGeographicalSearchMechanicalWorkshopController, makeListMechanicalWorkshopController, makeUpdateMechanicalWorkshopController } from '../../app/factories/controllers/mechanical-workshop';
 import { CreateMechanicalWorkshopValidator, GeographicalSearchMechanicalWorkshopValidator, UpdateMechanicalWorkshopValidator } from '../../app/validators/mechanical-workshop';
-import { makeGetByIdMechanicalWorkshopController } from '../../app/factories/controllers/mechanical-workshop/get-by-id';
-import { GeographicalSearchMechanicalWorkshopController } from '../../app/controllers/mechanical-workshop';
+import { makeFindByIdMechanicalWorkshopController } from '../../app/factories/controllers/mechanical-workshop/find-by-id';
 
 const mechanicalWorkshopRouter = express.Router();
 
@@ -13,7 +12,7 @@ mechanicalWorkshopRouter.delete('/:id', ControllerMiddleware(makeDeleteMechanica
 
 
 mechanicalWorkshopRouter.get('/geographical-search', GeographicalSearchMechanicalWorkshopValidator.validate, ControllerMiddleware(makeGeographicalSearchMechanicalWorkshopController()));
-mechanicalWorkshopRouter.get('/:id', ControllerMiddleware(makeGetByIdMechanicalWorkshopController()));
+mechanicalWorkshopRouter.get('/:id', ControllerMiddleware(makeFindByIdMechanicalWorkshopController()));
 mechanicalWorkshopRouter.get('/', ControllerMiddleware(makeListMechanicalWorkshopController()));
 
 export { mechanicalWorkshopRouter };
